@@ -27,7 +27,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -41,7 +40,8 @@ jobs:
         if: ${{ inputs.use-cache }}
         id: cache
         with:
-          path: ${{ steps.cache-key.outputs.CACHE_KEY }}
+          path: 13-caching/react-app/node_modules
+          key: ${{ steps.cache-key.outputs.CACHE_KEY }}
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci      
